@@ -14,16 +14,16 @@ export class AppConfigService extends ConfigValues {
   loadAppConfig() {
     return this.http.get('/assets/config/config.dev.json')
       .toPromise()
-      .then((data: any) => {
+      .then(async (data: any) => {
         if (data instanceof ConfigValues) {
-          this.set(data);
+          await this.set(data);
         } else {
           console.error('Failed to load config.');
         }
       });
   }
 
-  private set(values: ConfigValues): void {
+  private async set(values: ConfigValues): Promise<void> {
     this.baseUrl = values.baseUrl;
   }
 }

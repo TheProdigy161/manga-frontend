@@ -1,1 +1,5 @@
 <p>manga-dashboard works!</p>
+
+<span *ngFor="let manga of $getAll | async">
+  {{ manga.name }}
+</span>
