@@ -12,10 +12,10 @@ export class AppConfigService extends ConfigValues {
   }
 
   loadAppConfig() {
-    return this.http.get('/assets/config/config.dev.json')
+    return this.http.get<ConfigValues>('/assets/config/config.dev.json')
       .toPromise()
-      .then(async (data: any) => {
-        if (data instanceof ConfigValues) {
+      .then(async (data: ConfigValues | undefined) => {
+        if (data) {
           await this.set(data);
         } else {
           console.error('Failed to load config.');

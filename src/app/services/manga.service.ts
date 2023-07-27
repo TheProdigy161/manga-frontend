@@ -11,7 +11,7 @@ export class MangaService {
   private mangaUrl: string;
 
   constructor(private config: AppConfigService, private http: HttpClient) {
-    this.mangaUrl = `${config.baseUrl}/manga`;
+    this.mangaUrl = `${this.config.baseUrl}/manga`;
   }
 
   get(): Observable<Manga[]> {
