@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppConfigService } from './services/appconfig.service';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,15 @@ import { AppConfigService } from './services/appconfig.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MaterialModule
+  ],
+  exports: [
+    BrowserModule,
+    AppRoutingModule,
+    CommonModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule
