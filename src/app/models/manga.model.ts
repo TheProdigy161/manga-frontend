@@ -3,6 +3,7 @@ import { DateTime } from 'luxon';
 export class Manga {
   id: string;
   name: string;
+  imageUrl: string;
   releaseDate: string = DateTime.now().toFormat('yyyy-MM-dd');
   finishedDate: string = DateTime.now().toFormat('yyyy-MM-dd');
 
@@ -13,6 +14,7 @@ export class Manga {
 
 export class CreateManga {
   name: string;
+  imageUrl: string;
   releaseDate: string = DateTime.now().toFormat('yyyy-MM-dd');
   finishedDate: string = DateTime.now().toFormat('yyyy-MM-dd');
 
