@@ -1,5 +1,8 @@
-<p>manga-dashboard works!</p>
-
-<span *ngFor="let manga of $getAll | async">
-  {{ manga.name }}
-</span>
+<mat-grid-list [cols]="columnNum" [rowHeight]="imageHeight" gutterSize="10px">
+  <mat-grid-tile *ngFor="let manga of $getAll | async">
+    <mat-grid-tile-header>
+      {{manga.name}}
+    </mat-grid-tile-header>
+    <img class="mangaImage" [src]="manga.imageUrl"/>
+  </mat-grid-tile>
+</mat-grid-list>
