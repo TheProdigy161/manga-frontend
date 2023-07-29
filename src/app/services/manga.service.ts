@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConfigService } from './appconfig.service';
-import { Observable, lastValueFrom } from 'rxjs';
-import { Manga } from '../models/manga.model';
+import { Observable, lastValueFrom, catchError  } from 'rxjs';
+import { CreateManga, Manga } from '../models/manga.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +18,20 @@ export class MangaService {
     return this.http.get<Manga[]>(this.mangaUrl);
   }
 
-  async create(data: Manga): Promise<boolean> {
-    const $create = this.http.post<boolean>(this.mangaUrl, data);
-    const createSuccess = await lastValueFrom($create);
+  async create(data: CreateManga): Promise<boolean> {
+    const options = { responseType: 'text' as 'json' };
+
+    const $create = this.http.post(this.mangaUrl, data, options);
+
+    const createSuccess = await lastValueFrom($create)
+      .then((res) => {
+        return true;
+      })
+      .catch((err) => {
+        console.error(err.error);
+        return false;
+      });
+
     return createSuccess;
   }
 

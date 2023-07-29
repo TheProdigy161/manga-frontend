@@ -23,14 +23,6 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     MaterialModule
   ],
-  exports: [
-    BrowserModule,
-    AppRoutingModule,
-    CommonModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MaterialModule
-  ],
   providers: [
     {
       provide: APP_INITIALIZER,
