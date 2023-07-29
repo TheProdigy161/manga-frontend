@@ -1,0 +1,13 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field class="form-group">
+    <label for="name">Name</label>
+    <input matInput type="text" class="form-control" id="name" formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field class="form-group">
+    <label for="imageUrl">Image Url</label>
+    <input matInput type="text" class="form-control" id="imageUrl" formControlName="imageUrl">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">{{getSubmitButtonText()}}</button>
+</form>

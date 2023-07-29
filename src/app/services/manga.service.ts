@@ -18,12 +18,25 @@ export class MangaService {
     return this.http.get<Manga[]>(this.mangaUrl);
   }
 
-  async create(data: CreateManga): Promise<boolean> {
-    const options = { responseType: 'text' as 'json' };
-
-    const $create = this.http.post(this.mangaUrl, data, options);
+  async create(data: CreateManga): Promise<Manga> {
+    const $create = this.http.post<Manga>(this.mangaUrl, data);
 
     const createSuccess = await lastValueFrom($create)
+      .then((res) => {
+        return res;
+      })
+      .catch((err) => {
+        console.error(err.error);
+        return data as Manga;
+      });
+
+    return createSuccess;
+  }
+
+  async update(data: Manga): Promise<boolean> {
+    const $update = this.http.put(this.mangaUrl, data);
+
+    const updateSuccess = await lastValueFrom($update)
       .then((res) => {
         return true;
       })
@@ -32,12 +45,6 @@ export class MangaService {
         return false;
       });
 
-    return createSuccess;
-  }
-
-  async update(data: Manga): Promise<boolean> {
-    const $update = this.http.put<boolean>(this.mangaUrl, data);
-    const updateSuccess = await lastValueFrom($update);
     return updateSuccess;
   }
 }
