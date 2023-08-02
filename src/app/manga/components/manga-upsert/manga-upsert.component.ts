@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { lastValueFrom } from 'rxjs';
 import { CreateManga, Manga } from 'src/app/models/manga.model';
 import { MangaService } from 'src/app/services/manga.service';
 
 @Component({
-  selector: 'app-manga',
-  templateUrl: './manga.component.html',
-  styleUrls: ['./manga.component.scss']
+  selector: 'app-manga-upsert',
+  templateUrl: './manga-upsert.component.html',
+  styleUrls: ['./manga-upsert.component.scss']
 })
-export class MangaComponent {
+export class MangaUpsertComponent {
   form: FormGroup = new FormGroup({
     id: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),

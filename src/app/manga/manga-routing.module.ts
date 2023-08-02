@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MangaDashboardComponent } from './components/manga-dashboard/manga-dashboard.component';
-import { MangaComponent } from './components/manga/manga.component';
+import { MangaUpsertComponent } from './components/manga-upsert/manga-upsert.component';
 
 const routes: Routes = [
   { path: '', component: MangaDashboardComponent },
-  { path: 'add', component: MangaComponent },
-  { path: 'edit/:id', component: MangaComponent }
+  { path: 'add', component: MangaUpsertComponent },
+  { path: 'edit/:id', component: MangaUpsertComponent }
 ];
 
 @NgModule({

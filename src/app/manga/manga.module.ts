@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { MangaDashboardComponent } from './components/manga-dashboard/manga-dashboard.component';
-import { MangaComponent } from './components/manga/manga.component';
+import { MangaUpsertComponent } from './components/manga-upsert/manga-upsert.component';
 import { MangaRoutingModule } from './manga-routing.module';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,7 +12,7 @@ import { MangaTileComponent } from './components/manga-tile/manga-tile.component
 @NgModule({
   declarations: [
     MangaDashboardComponent,
-    MangaComponent,
+    MangaUpsertComponent,
     MangaTileComponent,
   ],
   imports: [

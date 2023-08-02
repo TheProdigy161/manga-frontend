@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MangaComponent } from './manga.component';
+import { MangaComponent } from './manga-upsert.component';
 
 describe('MangaComponent', () => {
   let component: MangaComponent;
