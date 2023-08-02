@@ -9,9 +9,4 @@ import { Manga } from 'src/app/models/manga.model';
 export class MangaTileComponent {
   @Input()
   manga: Manga;
-
-  getEditRoute(): string {
-    const route: string = `edit/${this.manga.id}`;
-    return route;
-  }
 }

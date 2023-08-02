@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../modules/material/material.module';
 import { MangaTileComponent } from './components/manga-tile/manga-tile.component';
+import { MangaViewComponent } from './components/manga-view/manga-view.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { MangaTileComponent } from './components/manga-tile/manga-tile.component
     MangaDashboardComponent,
     MangaUpsertComponent,
     MangaTileComponent,
+    MangaViewComponent,
   ],
   imports: [
     MaterialModule,
