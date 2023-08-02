@@ -18,6 +18,21 @@ export class MangaService {
     return this.http.get<Manga[]>(this.mangaUrl);
   }
 
+  async getById(id: string): Promise<Manga | null> {
+    const $get = this.http.get<Manga | null>(`${this.mangaUrl}/${id}`);
+
+    const res = await lastValueFrom($get)
+      .then((res) => {
+        return res;
+      })
+      .catch((err) => {
+        console.error(err.error);
+        return null;
+      });
+
+    return res;
+  }
+
   async create(data: CreateManga): Promise<Manga> {
     const $create = this.http.post<Manga>(this.mangaUrl, data);
 
