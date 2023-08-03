@@ -8,8 +8,8 @@ import { MangaService } from 'src/app/services/manga.service';
 })
 export class MangaDashboardComponent {
   $getAll = this.mangaService.get();
-  imageWidth = 230;
-  imageHeight = 325;
+  imageWidth = 200;
+  imageHeight = 270;
   columnNum = 0;
 
   constructor(private mangaService: MangaService) {
