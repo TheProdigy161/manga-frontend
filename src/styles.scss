@@ -14,7 +14,7 @@ body.dark {
   @include darken();
 }
 
-html.light {
+body.light {
   @include lighten();
 }
 

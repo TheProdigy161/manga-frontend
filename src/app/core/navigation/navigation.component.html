@@ -6,6 +6,13 @@
       Create Manga
     </div>
   </a>
+
+  <mat-slide-toggle class="darkModeToggle"
+    [checked]="isDarkMode()"
+    (change)="toggleTheme()"
+    color="primary">
+    Dark Mode
+  </mat-slide-toggle>
 </mat-toolbar>
 
 <router-outlet></router-outlet>
