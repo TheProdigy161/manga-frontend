@@ -1,9 +1,13 @@
+$titleColor_light: #ffffff;
+$toolbarColor_light: #000000;
 $bgColor_light: rgb(201, 201, 201);
 $textColor_light: black;
 $borderColor_light: black;
 
 // mixin that enables css variables in light mode
 @mixin lighten() {
+  --titleColor: #{$titleColor_light};
+  --toolbarColor: #{$toolbarColor_light};
   --bgColor: #{$bgColor_light};
   --textColor: #{$textColor_light};
   --borderColor: #{$borderColor_light};

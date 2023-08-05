@@ -1,9 +1,13 @@
+$titleColor_dark: #000000;
+$toolbarColor_dark: #ffffff;
 $bgColor_dark: #1a1a1a;
 $textColor_dark: white;
 $borderColor_dark: white;
 
 // mixin that enables css variables in dark mode
 @mixin darken() {
+  --titleColor: #{$titleColor_dark};
+  --toolbarColor: #{$toolbarColor_dark};
   --bgColor: #{$bgColor_dark};
   --textColor: #{$textColor_dark};
   --borderColor: #{$borderColor_dark};
