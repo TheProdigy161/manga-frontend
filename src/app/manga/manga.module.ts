@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../modules/material/material.module';
 import { MangaTileComponent } from './components/manga-tile/manga-tile.component';
 import { MangaViewComponent } from './components/manga-view/manga-view.component';
+import { CoreModule } from '../core/core.module';
 
 
 @NgModule({
@@ -15,13 +16,16 @@ import { MangaViewComponent } from './components/manga-view/manga-view.component
     MangaDashboardComponent,
     MangaUpsertComponent,
     MangaTileComponent,
-    MangaViewComponent,
+    MangaViewComponent
   ],
   imports: [
-    MaterialModule,
+    CoreModule,
     MangaRoutingModule,
     CommonModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
+  ],
+  exports: [
+    MaterialModule
   ]
 })
 export class MangaModule { }
