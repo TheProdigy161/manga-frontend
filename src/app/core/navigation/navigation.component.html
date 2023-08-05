@@ -7,11 +7,10 @@
     </div>
   </a>
 
-  <mat-slide-toggle class="darkModeToggle"
+  <mat-slide-toggle #darkModeToggle class="darkModeToggle"
     [checked]="isDarkMode()"
     (change)="toggleTheme()"
     color="primary">
-    Dark Mode
   </mat-slide-toggle>
 </mat-toolbar>
 
