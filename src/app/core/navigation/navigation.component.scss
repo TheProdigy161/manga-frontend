@@ -1,4 +1,6 @@
 mat-toolbar {
+    min-height: 64px;
+    max-height: 64px;
     background-color: var(--toolbarColor);
     color: var(--titleColor);
 }

@@ -7,6 +7,7 @@ import { MangaService } from 'src/app/services/manga.service';
   styleUrls: ['./manga-dashboard.component.scss']
 })
 export class MangaDashboardComponent {
+  isLoading = true;
   $getAll = this.mangaService.get();
   imageWidth = 200;
   imageHeight = 270;
@@ -14,6 +15,10 @@ export class MangaDashboardComponent {
 
   constructor(private mangaService: MangaService) {
     this.onResize();
+
+    this.$getAll.subscribe(() => {
+      this.isLoading = false;
+    });
   }
 
   @HostListener('window:resize', ['$event'])
