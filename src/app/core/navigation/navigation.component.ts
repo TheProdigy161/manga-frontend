@@ -1,8 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, Inject, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, ViewChild, computed, effect, signal } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { LocalstorageService } from 'src/app/services/localstorage.service';
 
 enum Mode { LIGHT = 'light', DARK = 'dark' };
 
@@ -14,11 +13,15 @@ enum Mode { LIGHT = 'light', DARK = 'dark' };
 export class NavigationComponent implements AfterViewInit {
   @ViewChild('darkModeToggle', { read: ElementRef }) element: ElementRef | undefined;
 
-  currentMode = Mode.LIGHT;
+  currentMode = signal(localStorage.getItem('theme') || Mode.LIGHT);
+  isDarkMode = computed(() => this.currentMode() === Mode.DARK);
 
-  constructor(@Inject(DOCUMENT) private document: Document, private http: HttpClient, private localstorageService: LocalstorageService<Mode>) {
-    this.currentMode = localstorageService.get('theme') || Mode.LIGHT;
-    this.document.body.classList.add(this.currentMode);
+  constructor(@Inject(DOCUMENT) private document: Document, private http: HttpClient) {
+    effect(() => {
+      const mode = this.currentMode();
+      localStorage.setItem('theme', mode);
+      this.document.body.classList.add(mode);
+    });
   }
 
   ngAfterViewInit() {
@@ -27,16 +30,14 @@ export class NavigationComponent implements AfterViewInit {
 
   // Toggles the bodys class based on the current theme.
   toggleTheme() {
-    this.document.body.classList.remove(this.currentMode);
+    const mode = this.currentMode();
+    this.document.body.classList.remove(mode);
 
-    if (this.currentMode === Mode.LIGHT) {
-      this.currentMode = Mode.DARK;
+    if (mode === Mode.LIGHT) {
+      this.currentMode.set(Mode.DARK);
     } else {
-      this.currentMode = Mode.LIGHT;
+      this.currentMode.set(Mode.LIGHT);
     }
-
-    this.localstorageService.save('theme', this.currentMode);
-    this.document.body.classList.add(this.currentMode);
   }
 
   async setIcon() {
@@ -60,9 +61,5 @@ export class NavigationComponent implements AfterViewInit {
     const pathD: string = path.split('"')[0];
 
     return pathD;
-  }
-
-  isDarkMode() {
-    return this.currentMode === Mode.DARK;
   }
 }
