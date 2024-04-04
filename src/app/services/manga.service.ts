@@ -52,7 +52,7 @@ export class MangaService {
     const $update = this.http.put(this.mangaUrl, data);
 
     const updateSuccess = await lastValueFrom($update)
-      .then((res) => {
+      .then(() => {
         return true;
       })
       .catch((err) => {
