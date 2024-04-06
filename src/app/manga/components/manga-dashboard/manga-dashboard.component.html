@@ -1,6 +1,6 @@
-<div *ngIf="!isLoading">
+<div #gridList *ngIf="!isLoading">
   <mat-grid-list [cols]="columnNum" [rowHeight]="imageHeight" gutterSize="10px">
-    <mat-grid-tile *ngFor="let manga of $getAll | async">
+    <mat-grid-tile *ngFor="let manga of mangas">
       <app-manga-tile [manga]="manga"></app-manga-tile>
     </mat-grid-tile>
   </mat-grid-list>

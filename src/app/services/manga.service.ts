@@ -14,8 +14,8 @@ export class MangaService {
     this.mangaUrl = `${this.config.baseUrl}/manga`;
   }
 
-  get(): Observable<Manga[]> {
-    return this.http.get<Manga[]>(this.mangaUrl);
+  get(page: number, pageSize: number = 10): Observable<Manga[]> {
+    return this.http.get<Manga[]>(`${this.mangaUrl}/paginated?page=${page}&pageSize=${pageSize}`);
   }
 
   async getById(id: string): Promise<Manga | null> {
