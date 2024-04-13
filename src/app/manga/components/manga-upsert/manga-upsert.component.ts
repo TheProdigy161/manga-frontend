@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Author } from 'src/app/models/author.model';
 import { CreateManga, Manga } from 'src/app/models/manga.model';
+import { AuthorService } from 'src/app/services/author.service';
 import { MangaService } from 'src/app/services/manga.service';
 
 @Component({
@@ -13,12 +15,20 @@ export class MangaUpsertComponent {
   form: FormGroup = new FormGroup({
     id: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
+    authorId: new FormControl('', Validators.required),
     imageUrl: new FormControl('', Validators.required),
     releaseDate: new FormControl('2023-07-29', Validators.required),
     finishedDate: new FormControl(),
   });
 
-  constructor(private mangaService: MangaService, private toast: MatSnackBar) { }
+  getAuthors$ = this.authorService.getAll();
+  authors: Author[] = [];
+
+  constructor(private authorService: AuthorService, private mangaService: MangaService, private toast: MatSnackBar) {
+    this.authorService.getAll().subscribe(data => {
+      this.authors = data;
+    });
+  }
 
   async onSubmit(): Promise<void> {
     if (this.isCreate()) {
@@ -29,10 +39,10 @@ export class MangaUpsertComponent {
   }
 
   async create(): Promise<void> {
-    const createRes = await this.mangaService.create(new CreateManga(this.form.value));
+    const createRes: Manga = await this.mangaService.create(new CreateManga(this.form.value));
 
     if (createRes.id) {
-      this.form.setValue(createRes);
+      this.form.setValue(new Manga(createRes));
       this.toast.open('Manga created', 'Close');
     } else {
       this.toast.open('Failed to create manga', 'Close');

@@ -9,5 +9,12 @@
     <input matInput type="text" class="form-control" id="imageUrl" formControlName="imageUrl">
   </mat-form-field>
 
+  <mat-form-field class="form-group">
+    <label for="authorId">Toppings</label>
+    <mat-select placeholder="Select an author" id="authorId" formControlName="authorId">
+      <mat-option *ngFor="let author of authors" [value]="author.id">{{author.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <button mat-raised-button color="primary" type="submit">{{getSubmitButtonText()}}</button>
 </form>
