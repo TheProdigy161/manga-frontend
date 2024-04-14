@@ -15,6 +15,7 @@ export class MangaDashboardComponent {
   imageWidth = 200;
   imageHeight = 270;
   columnNum = 0;
+  maxScrollY = 0;
 
   currentPage: number = 1;
   pageSize: number = 12;
@@ -41,6 +42,15 @@ export class MangaDashboardComponent {
   onWindowScroll(event: any) {
     let gridOffsetHeight = this.gridListElement.nativeElement.offsetHeight;
 
+    // Check if the scroll is going up. If not we don't need to load more data.
+    if (window.scrollY <= this.maxScrollY) {
+      return;
+    }
+    else {
+      this.maxScrollY = window.scrollY;
+    }
+
+    // Only load data if scroll is at the bottom of the page
     if(window.innerHeight + window.scrollY >= gridOffsetHeight && !this.isDataLoading) {
       this.loadMangas();
     }
@@ -50,8 +60,11 @@ export class MangaDashboardComponent {
     this.isDataLoading = true;
 
     this.mangaService.get(this.currentPage, this.pageSize).subscribe((data) => {
-      this.mangas.push(...data);
-      this.currentPage++;
+      if (data.length > 0) { 
+        this.mangas.push(...data);
+        this.currentPage++;
+      }
+
       this.isDataLoading = false;
     });
   }
