@@ -66,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "manga-frontend:build:production"
+              "buildTarget": "manga-frontend:build:production"
             },
             "development": {
-              "browserTarget": "manga-frontend:build:development"
+              "buildTarget": "manga-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -77,7 +77,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "manga-frontend:build"
+            "buildTarget": "manga-frontend:build"
           }
         },
         "test": {
