@@ -12,8 +12,14 @@ mat-toolbar {
   margin-right: 16px;
 }
 
-a div {
+.button {
   padding-top: 4px;
+  background-color: var(--bgColor)
+}
+
+.buttonTitle {
+  padding-top: 4px;
+  color: var(--textColor);
 }
 
 .darkModeToggle {
