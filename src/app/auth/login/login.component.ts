@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,9 +14,11 @@ export class LoginComponent {
     password: new FormControl('', Validators.required)
   });
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
-  onSubmit() {
-    this.authService.login(this.form.value);
+  async onSubmit() {
+    await this.authService.login(this.form.value);
+
+    this.router.navigateByUrl('/manga');
   }
 }
