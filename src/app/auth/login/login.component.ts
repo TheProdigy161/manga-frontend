@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
   form: FormGroup = new FormGroup({
-    id: new FormControl('', Validators.required),
-    name: new FormControl('', Validators.required),
-    imageUrl: new FormControl('', Validators.required),
-    releaseDate: new FormControl('2023-07-29', Validators.required),
-    finishedDate: new FormControl(),
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
   });
 
+  constructor(private authService: AuthService) { }
+
   onSubmit() {
-    console.log(this.form.value);
+    this.authService.login(this.form.value);
   }
 }
