@@ -18,7 +18,7 @@ export class MangaDashboardComponent {
   maxScrollY = 0;
 
   currentPage: number = 1;
-  pageSize: number = 12;
+  pageSize: number = 40;
 
   @ViewChild('gridList') gridListElement: ElementRef;
 
@@ -60,7 +60,7 @@ export class MangaDashboardComponent {
     this.isDataLoading = true;
 
     this.mangaService.get(this.currentPage, this.pageSize).subscribe((data) => {
-      if (data.length > 0) { 
+      if (data.length > 0) {
         this.mangas.push(...data);
         this.currentPage++;
       }
