@@ -51,4 +51,4 @@ jobs:
       # 6. Copy to S3 bucket.
       - name: Copy to S3 Bucket
         run: |
-          aws s3 sync dist/manga-frontend/ s3://manga-static-websites/
+          aws s3 sync dist/manga-frontend/ s3://ross-static-websites/manga-frontend/
