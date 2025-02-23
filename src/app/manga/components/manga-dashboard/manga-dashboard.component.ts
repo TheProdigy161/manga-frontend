@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { MatGridList } from '@angular/material/grid-list';
+import { timer } from 'rxjs';
 import { Manga } from 'src/app/models/manga.model';
 import { MangaService } from 'src/app/services/manga.service';
 
@@ -25,7 +25,6 @@ export class MangaDashboardComponent {
   constructor(private mangaService: MangaService) {
     this.onResize();
     this.loadMangas();
-    this.isLoading = false;
   }
 
   @HostListener('window:resize', ['$event'])
@@ -66,6 +65,9 @@ export class MangaDashboardComponent {
       }
 
       this.isDataLoading = false;
+
+      // Add a delay to make the loading not look too fast
+      timer(250).subscribe(() => this.isLoading = false);
     });
   }
 }
