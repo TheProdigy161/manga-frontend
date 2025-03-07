@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { MatGridList } from '@angular/material/grid-list';
+import { timer } from 'rxjs';
 import { Manga } from 'src/app/models/manga.model';
 import { MangaService } from 'src/app/services/manga.service';
 
@@ -18,14 +18,13 @@ export class MangaDashboardComponent {
   maxScrollY = 0;
 
   currentPage: number = 1;
-  pageSize: number = 12;
+  pageSize: number = 40;
 
   @ViewChild('gridList') gridListElement: ElementRef;
 
   constructor(private mangaService: MangaService) {
     this.onResize();
     this.loadMangas();
-    this.isLoading = false;
   }
 
   @HostListener('window:resize', ['$event'])
@@ -60,12 +59,15 @@ export class MangaDashboardComponent {
     this.isDataLoading = true;
 
     this.mangaService.get(this.currentPage, this.pageSize).subscribe((data) => {
-      if (data.length > 0) { 
+      if (data.length > 0) {
         this.mangas.push(...data);
         this.currentPage++;
       }
 
       this.isDataLoading = false;
+
+      // Add a delay to make the loading not look too fast
+      timer(250).subscribe(() => this.isLoading = false);
     });
   }
 }
