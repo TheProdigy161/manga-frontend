@@ -56,8 +56,6 @@ export class MangaDashboardComponent {
   }
 
   loadMangas() {
-    this.isDataLoading = true;
-
     this.mangaService.get(this.currentPage, this.pageSize).subscribe((data) => {
       if (data.length > 0) {
         this.mangas.push(...data);
