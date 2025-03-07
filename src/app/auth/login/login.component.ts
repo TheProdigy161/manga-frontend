@@ -17,7 +17,11 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   async onSubmit() {
-    await this.authService.login(this.form.value);
+    let login: boolean = await this.authService.login(this.form.value);
+
+    if (!login) {
+      return;
+    }
 
     this.router.navigateByUrl('/manga');
   }

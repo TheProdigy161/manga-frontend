@@ -29,15 +29,16 @@ export class AuthService {
     return registerSuccess;
   }
 
-  async login(data: CreateManga): Promise<void> {
+  async login(data: CreateManga): Promise<boolean> {
     const $login = this.http.post<any>(`${this.authUrl}/login`, data);
 
     const loginSuccess = await lastValueFrom($login)
       .then((res) => {
-        return res;
+        return true;
       })
       .catch((err) => {
         console.error(err.error);
+        return false;
       });
 
     return loginSuccess;
