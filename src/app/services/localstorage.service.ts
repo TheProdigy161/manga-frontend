@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class LocalstorageService<T> {
+export class LocalstorageService {
 
   constructor() { }
 
@@ -13,5 +13,9 @@ export class LocalstorageService<T> {
 
   get<T>(key: string): T {
     return localStorage.getItem(key) as T;
+  }
+
+  remove(key: string) {
+    localStorage.removeItem(key);
   }
 }
