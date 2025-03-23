@@ -51,6 +51,7 @@ export class MangaDashboardComponent {
 
     // Only load data if scroll is at the bottom of the page
     if(window.innerHeight + window.scrollY >= gridOffsetHeight && !this.isDataLoading) {
+      this.isDataLoading = true;
       this.loadMangas();
     }
   }
